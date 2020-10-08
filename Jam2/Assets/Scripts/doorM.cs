@@ -7,12 +7,23 @@ public class doorM : MonoBehaviour {
     public bool IsLocked = false;
 	public float RotationSpeed = 3f;
 	private bool Opened = false;
+	private float YStart = 0;
+	private int cw = 1;
+	void Start()
+	{
+		YStart = transform.eulerAngles.y;
+	}
 	void FixedUpdate () {
 		if(Opened && !IsLocked)
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, transform.eulerAngles.y+90, 0), Time.deltaTime * RotationSpeed);
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, YStart+ cw * 90, 0), Time.deltaTime * RotationSpeed);
 	}
-	public void open()
+	public void OpenClockWise()
 	{
 		Opened = true;
+	}
+	public void OpenCounterClockWise()
+	{
+		Opened = true;
+		cw = -1;
 	}
 }

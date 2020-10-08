@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: f53cd49008779dc458e60b13976cf438, type: 2}
-  outlineThickness: -0.25
+  outlineThickness: -1.1
   outlineColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &490660236730585206
 MonoBehaviour:
@@ -131,7 +131,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5257235722057579905}
         m_TargetAssemblyTypeName: doorM, Assembly-CSharp
-        m_MethodName: open
+        m_MethodName: OpenClockWise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
