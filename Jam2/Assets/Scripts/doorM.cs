@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class doorM : MonoBehaviour {
 
-    public bool IsLocked = true;
-	// Use this for initialization
-	void Start () {
-		
+    public bool IsLocked = false;
+	public float RotationSpeed = 3f;
+	private bool Opened = false;
+	private float YStart = 0;
+	private int cw = 1;
+	void Start()
+	{
+		YStart = transform.eulerAngles.y;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+		if(Opened && !IsLocked)
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, YStart+ cw * 90, 0), Time.deltaTime * RotationSpeed);
+	}
+	public void OpenClockWise()
+	{
+		Opened = true;
+	}
+	public void OpenCounterClockWise()
+	{
+		Opened = true;
+		cw = -1;
 	}
 }
