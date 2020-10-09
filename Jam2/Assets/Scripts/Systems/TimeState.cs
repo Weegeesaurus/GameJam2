@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class TimeState : MonoBehaviour
 {
@@ -11,8 +13,13 @@ public class TimeState : MonoBehaviour
     public Text timeCounter;
     private DateTime loopTime;
     private bool running;
-    public float elapsedTime;
+    private float elapsedTime;
     public float minutesPerSecond;
+    public float BaseMPS;
+    public float FastMPS;
+    public GameObject volume;
+    public GameObject Blackout;
+    private Vignette vig;
 
     private void Awake()    //setting up singleton
     {
@@ -29,11 +36,13 @@ public class TimeState : MonoBehaviour
 
     void Start()    //initialize
     {
+        Volume vol = volume.GetComponent<Volume>();
+        vol.sharedProfile.TryGet<Vignette>(out vig);
+
         timeCounter.text = "Time 7:00 am";
         running = false;
         elapsedTime = 60 * 7f;  //7 am
         StartTime();
-        InvokeRepeating("updateSec", 1f, 1f);
     }
     public void StartTime() //begin time
     {
@@ -64,11 +73,25 @@ public class TimeState : MonoBehaviour
     {
         return loopTime.Minute;
     }
-    private void updateSec()
+    private void Update()
     {
+        if (getHour() < 8)
+        {
+            vig.intensity.value = .1f;
+        }
         if (getHour() >= 22 )
         {
-            SceneManager.LoadScene("testing");
+            Blackout.SetActive(true);
+            if (getMinute() >= 10)
+            {
+                SceneManager.LoadScene("testing");
+            }
+        }
+
+        if (getHour() >= 21 && getMinute() >= 30)
+        {
+            Debug.Log("getting sleepy");
+            vig.intensity.value = ((getMinute()-30)/ 30f)*.9f+.1f;
         }
     }
 }
