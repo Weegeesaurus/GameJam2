@@ -7,7 +7,7 @@ public class doorM : MonoBehaviour {
     public bool IsLocked = false;
 	public float RotationSpeed = 3f;
 	private bool Opened = false;
-	private bool LockStart;
+	private bool LockStart = false;
 	private float YStart = 0;
 	private int cw = 1;
 	void Start()
@@ -36,6 +36,6 @@ public class doorM : MonoBehaviour {
 	{
 		Opened = false;
 		IsLocked = LockStart;
-		transform.eulerAngles = (0,YStart,0);
+		transform.eulerAngles = new Vector3(0,YStart,0);
 	}
 }
