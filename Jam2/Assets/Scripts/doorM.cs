@@ -21,12 +21,16 @@ public class doorM : MonoBehaviour {
 	}
 	public void OpenClockWise()
 	{
-		Opened = true;
+		if (!IsLocked)
+			Opened = true;
 	}
 	public void OpenCounterClockWise()
 	{
-		Opened = true;
-		cw = -1;
+		if (!IsLocked)
+		{
+			Opened = true;
+			cw = -1;
+		}
 	}
 	public void Unlock()
 	{
