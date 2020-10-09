@@ -46,3 +46,5 @@ MonoBehaviour:
   timeCounter: {fileID: 0}
   elapsedTime: 0
   minutesPerSecond: 10
+  BaseMPS: 2
+  FastMPS: 8

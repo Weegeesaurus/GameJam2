@@ -13,6 +13,8 @@ public class TimeState : MonoBehaviour
     private bool running;
     public float elapsedTime;
     public float minutesPerSecond;
+    public float BaseMPS;
+    public float FastMPS;
 
     private void Awake()    //setting up singleton
     {
