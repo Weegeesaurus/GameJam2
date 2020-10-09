@@ -60,7 +60,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 135114132237135726}
-  sensitivity: 600
+  sensitivity: 500
   clampAngle: 85
 --- !u!114 &135114131837809503
 MonoBehaviour:
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactDistance: 2.2
   current: {fileID: 0}
+  busy: 0
 --- !u!1 &135114132237135726
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +161,7 @@ GameObject:
   - component: {fileID: 135114132237135721}
   - component: {fileID: 135114132237135720}
   - component: {fileID: 135114132237135727}
+  - component: {fileID: 8100950596663066916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -279,3 +281,15 @@ MonoBehaviour:
   controller: {fileID: 135114132237135720}
   jumpSpeed: 5
   gravity: 9.81
+--- !u!114 &8100950596663066916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135114132237135726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc14eb4279a4ed447be92257ff37822e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
