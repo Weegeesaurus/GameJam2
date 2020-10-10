@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3c9d226bf5cb27345b434de6c76fa7fe
+=======
+guid: 7be84c4d17b04b048b668d07f27adb8f
+>>>>>>> Vincent
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
