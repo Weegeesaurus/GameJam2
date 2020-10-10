@@ -6,10 +6,10 @@ public class doorM : MonoBehaviour {
 
     public bool IsLocked = false;
 	public float RotationSpeed = 3f;
+	public bool NormalRotationCW = true;
 	private bool Opened = false;
 	private bool LockStart = false;
 	private float YStart = 0;
-	private int cw = 1;
 	void Start()
 	{
 		YStart = transform.eulerAngles.y;
@@ -17,20 +17,15 @@ public class doorM : MonoBehaviour {
 	}
 	void FixedUpdate () {
 		if(Opened && !IsLocked)
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, YStart+ cw * 90, 0), Time.deltaTime * RotationSpeed);
+			if(NormalRotationCW)
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, YStart + 90, 0), Time.deltaTime * RotationSpeed);
+			else
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, YStart - 90, 0), Time.deltaTime * RotationSpeed);
 	}
-	public void OpenClockWise()
+	public void Open()
 	{
 		if (!IsLocked)
 			Opened = true;
-	}
-	public void OpenCounterClockWise()
-	{
-		if (!IsLocked)
-		{
-			Opened = true;
-			cw = -1;
-		}
 	}
 	public void Unlock()
 	{
