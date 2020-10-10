@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33485690003626002}
   - component: {fileID: 23722170975101654}
   - component: {fileID: 65558739152625350}
+  - component: {fileID: 7967046819748625129}
   m_Layer: 0
   m_Name: Neo_Door_01_snaps001
   m_TagString: Untagged
@@ -98,6 +99,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2.25, z: 0.08727096}
   m_Center: {x: 0.625, y: 1.125, z: -0.0018848106}
+--- !u!114 &7967046819748625129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191596092261060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac37a3a48519d44baa168d4089355d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLocked: 0
+  RotationSpeed: 3
+  NormalRotationCW: 1
 --- !u!1 &3527175588745225811
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,9 +228,9 @@ MonoBehaviour:
   actions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7967046819748625129}
         m_TargetAssemblyTypeName: doorM, Assembly-CSharp
-        m_MethodName: OpenClockWise
+        m_MethodName: Open
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -352,9 +368,9 @@ MonoBehaviour:
   actions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7967046819748625129}
         m_TargetAssemblyTypeName: doorM, Assembly-CSharp
-        m_MethodName: OpenClockWise
+        m_MethodName: Open
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
