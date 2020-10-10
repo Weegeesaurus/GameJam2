@@ -90,7 +90,6 @@ public class TimeState : MonoBehaviour
 
         if (getHour() >= 21 && getMinute() >= 30)
         {
-            Debug.Log("getting sleepy");
             vig.intensity.value = ((getMinute()-30)/ 30f)*.9f+.1f;
         }
     }
