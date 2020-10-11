@@ -27,10 +27,6 @@ public class doorM : MonoBehaviour {
 		if (!IsLocked)
 			Opened = true;
 	}
-	public void Unlock()
-	{
-		IsLocked = false;
-	}
 	public void Reset()
 	{
 		Opened = false;
