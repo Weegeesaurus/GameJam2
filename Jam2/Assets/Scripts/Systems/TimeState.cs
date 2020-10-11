@@ -20,6 +20,10 @@ public class TimeState : MonoBehaviour
     public GameObject volume;
     private Vignette vig;
 
+    private bool OutageTrigger=false;
+    private bool CrashTrigger=false;
+    private bool GunTrigger=false;
+
     private void Awake()    //setting up singleton
     {
         if (instance == null)
@@ -74,22 +78,46 @@ public class TimeState : MonoBehaviour
     }
     private void Update()
     {
-        if (getHour() < 8)
+        if (getHour() < 8)      //fix vignette
         {
             vig.intensity.value = .1f;
         }
-        if (getHour() >= 22 )
+        if (getHour() == 11 && !OutageTrigger)//power off house
+        {
+            PlayerState.instance.PowerOff();
+            OutageTrigger = true;
+        }
+
+        if (getHour() == 13 && !PlayerState.instance.HousePower)    //turn on house
+        {
+            PlayerState.instance.PowerOn();
+        }
+
+        if (getHour() == 15 && !CrashTrigger)   //cause a car crash
+        {
+            PlayerState.instance.Crash();
+            CrashTrigger = true;
+        }
+
+        if (getHour() == 21 && !GunTrigger)     //murder happens
+        {
+            PlayerState.instance.Gunshot();
+            GunTrigger = true;
+            vig.intensity.value = .6f;
+        }
+
+        if (getHour() >= 22 )       //sleep
         {
             BlackoutManager.instance.FadeOut();
-            if (getMinute() >= 5)
+            if (getMinute() >= 2)
             {
                 SceneManager.LoadScene("testing");
             }
         }
 
-        if (getHour() >= 21 && getMinute() >= 30)
+        if (getHour() >= 21 && getMinute() >= 30)   //increase vignette
         {
-            vig.intensity.value = ((getMinute()-30)/ 30f)*.9f+.1f;
+            vig.intensity.value = ((getMinute()-30)/ 30f)*.4f+.6f;
         }
     }
 }

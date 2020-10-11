@@ -11,9 +11,16 @@ public class PlayerState : MonoBehaviour
     public bool HousePower=true;
     public bool[] items;    //11 items
     public Inventory inventory;
-    private int PdDelay;
+
+    public GameObject PowerOutSound;
+    public GameObject PowerOnSound;
+    public GameObject CrashSound;
+    public GameObject GunSound;
+    private int PdDelayH;
+    private int PdDelayM;
     private GameObject[] Pdlights;
     private GameObject[] PdELights;
+    private GameObject[] HouseLights;
 
     private void Awake()    //setting up singleton
     {
@@ -32,6 +39,7 @@ public class PlayerState : MonoBehaviour
     {
         Pdlights = GameObject.FindGameObjectsWithTag("PDLight");
         PdELights = GameObject.FindGameObjectsWithTag("RedLight");
+        HouseLights = GameObject.FindGameObjectsWithTag("HouseLight");
         foreach (GameObject light in PdELights)
         {
             light.SetActive(false);
@@ -70,31 +78,52 @@ public class PlayerState : MonoBehaviour
                 light.SetActive(true);
             }
             PdPower = false;
-            PdDelay = TimeState.instance.getHour()+1;
+            GameObject obj = Instantiate(PowerOutSound);
+            PdDelayH = TimeState.instance.getHour()+1;
+            PdDelayM = TimeState.instance.getMinute();
             InvokeRepeating("updateSec", 1f, 1f);
         }
     }
 
+    public void PowerOff()
+    {
+        if (HousePower == true)
+        {
+            foreach (GameObject light in HouseLights)
+            {
+                light.SetActive(false);
+            }
+            GameObject obj =Instantiate(PowerOutSound);
+            Destroy(obj, 10f);
+            HousePower = false;
+        }
+    }
     public void PowerOn()
     {
         if (HousePower == false)
         {
-            foreach (GameObject light in Pdlights)
-            {
-                light.SetActive(false);
-            }
-            foreach (GameObject light in PdELights)
+            foreach (GameObject light in HouseLights)
             {
                 light.SetActive(true);
             }
-            PdPower = false;
-            PdDelay = TimeState.instance.getHour() + 1;
-            InvokeRepeating("updateSec", 1f, 1f);
+            GameObject obj = Instantiate(PowerOnSound);
+            Destroy(obj, 10f);
+            HousePower = true;
         }
+    }
+    public void Crash()
+    {
+        GameObject obj = Instantiate(CrashSound);
+        Destroy(obj, 10f);
+    }
+    public void Gunshot()
+    {
+        GameObject obj = Instantiate(GunSound);
+        Destroy(obj, 10f);
     }
     private void updateSec()
     {
-        if (TimeState.instance.getHour() >= PdDelay)
+        if (TimeState.instance.getHour() >= PdDelayH && TimeState.instance.getMinute() >= PdDelayM)
         {
             foreach (GameObject light in Pdlights)
             {
@@ -104,6 +133,7 @@ public class PlayerState : MonoBehaviour
             {
                 light.SetActive(false);
             }
+            GameObject obj = Instantiate(PowerOnSound);
             PdPower = true;
             CancelInvoke();
         }
