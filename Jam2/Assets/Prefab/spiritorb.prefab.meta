@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Jam2/Assets/Scenes/testlevel.unity.meta
+guid: 05966902d5aa14f46aae9ae9cf4cca4a
+DefaultImporter:
+=======
 guid: 046f09dd1f6098f4487c3b4504280d54
 PrefabImporter:
+>>>>>>> main:Jam2/Assets/Prefab/spiritorb.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

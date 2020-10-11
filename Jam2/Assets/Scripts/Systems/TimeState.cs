@@ -18,7 +18,6 @@ public class TimeState : MonoBehaviour
     public float BaseMPS;
     public float FastMPS;
     public GameObject volume;
-    public GameObject Blackout;
     private Vignette vig;
 
     private void Awake()    //setting up singleton
@@ -81,8 +80,8 @@ public class TimeState : MonoBehaviour
         }
         if (getHour() >= 22 )
         {
-            Blackout.SetActive(true);
-            if (getMinute() >= 10)
+            BlackoutManager.instance.FadeOut();
+            if (getMinute() >= 5)
             {
                 SceneManager.LoadScene("testing");
             }
