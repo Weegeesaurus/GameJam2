@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
@@ -9,15 +10,57 @@ public class Settings : MonoBehaviour
     public Slider fov;
     public Text sensText;
     public Text fovText;
+    public GameObject pauseMenu;
     private Camera cam;
     private CameraController camControl;
+    public bool cursorLock;
 
-    void Start()
+    void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // called second
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        cursorLock = true;
         cam = Camera.main;
         camControl = cam.GetComponent<CameraController>();
-        sensText.text = Mathf.Round(sensitivity.value * 100f).ToString();
-        fovText.text = cam.fieldOfView.ToString();
+        UpdateSensitivity();
+        UpdateFov();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (pauseMenu.activeInHierarchy == false)   //if not paused
+            {
+                if (Cursor.lockState == CursorLockMode.None)    //remembers cursorLocking
+                {
+                    cursorLock = false;
+                }
+                else
+                {
+                    cursorLock = true;
+                }
+                Cursor.lockState = CursorLockMode.None;
+                Pause();
+            }
+            else
+            {
+                if (cursorLock == true)    //recalls cursorLock
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                Resume();
+            }
+
+        }
     }
 
     public void UpdateSensitivity()
@@ -31,5 +74,28 @@ public class Settings : MonoBehaviour
         fov.value= Mathf.Round(fov.value * 100f) / 100f;
         cam.fieldOfView = 60f+fov.value*40f;
         fovText.text = Mathf.Round(cam.fieldOfView).ToString();
+    }
+    public void Resume()
+    {
+       if (pauseMenu.activeInHierarchy==true)
+        {
+            pauseMenu.SetActive(false);
+            TimeState.instance.StartTime();
+            PlayerState.instance.paused = false;
+        }
+    }
+    public void Pause()
+    {
+        if (pauseMenu.activeInHierarchy == false)
+        {
+            pauseMenu.SetActive(true);
+            TimeState.instance.StopTime();
+            PlayerState.instance.paused = true;
+        }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

@@ -21,7 +21,7 @@ public class Keypad : MonoBehaviour
 
     public void AddNum(string num)
     {
-        if (entered.Length<6)
+        if (entered.Length<4)
         {
             entered += num;
             displayText.text = entered;
@@ -46,6 +46,8 @@ public class Keypad : MonoBehaviour
         {
             statusLight.color = Color.green;
             yield return new WaitForSeconds(1.5f);
+            PlayerState.instance.busy = false;
+            Cursor.lockState = CursorLockMode.Locked;
             Destroy(gameObject);
         }
         else
@@ -56,13 +58,9 @@ public class Keypad : MonoBehaviour
             yield return new WaitForSeconds(.2f);
             statusLight.color = Color.red;
             yield return new WaitForSeconds(1.1f);
+            PlayerState.instance.busy = false;
+            Cursor.lockState = CursorLockMode.Locked;
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -15,6 +15,8 @@ public class UseKeypad : MonoBehaviour
     // Update is called once per frame
     public void OpenKeypad()
     {
+        PlayerState.instance.busy = true;
+        Cursor.lockState = CursorLockMode.None;
         GameObject pad = Instantiate(keypad, canvas.transform);
         pad.SetActive(true);
         pad.transform.parent = canvas.transform;

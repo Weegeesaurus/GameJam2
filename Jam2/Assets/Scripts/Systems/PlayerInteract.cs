@@ -6,7 +6,6 @@ public class PlayerInteract : MonoBehaviour
 {
     public float interactDistance = 2f;
     public GameObject current=null;
-    public bool busy = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +17,7 @@ public class PlayerInteract : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.forward * interactDistance, Color.green);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit _hit, interactDistance) && !PlayerState.instance.busy)  //do we hit something?
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit _hit, interactDistance) && !PlayerState.instance.busy && !PlayerState.instance.paused)  //do we hit something?
         {
             GameObject obj = _hit.collider.gameObject;
 

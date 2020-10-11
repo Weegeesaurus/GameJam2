@@ -27,8 +27,9 @@ public class OutlineController : MonoBehaviour
 
     Renderer CreateOutline(Material mat, float thickness, Color color)
     {
-        GameObject outlineObj = Instantiate(this.gameObject, transform.position, transform.rotation);
+        GameObject outlineObj = Instantiate(this.gameObject,transform.position, transform.rotation);
         outlineObj.transform.parent = gameObject.transform;
+        outlineObj.transform.localRotation = Quaternion.Euler(0, 180, 0);
         Renderer rend = outlineObj.GetComponent<Renderer>();
         rend.material = mat;
         rend.material.SetColor("_color", color);

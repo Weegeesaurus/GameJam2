@@ -19,15 +19,22 @@ public class MoveAI : MonoBehaviour
     }
     void Update()
     {
-        if (TimeState.instance.minutesPerSecond==TimeState.instance.FastMPS)
+        if (!PlayerState.instance.paused)
         {
-            agent.speed = baseSpeed * (TimeState.instance.FastMPS / TimeState.instance.BaseMPS);
-            agent.angularSpeed = angSpeed * (TimeState.instance.FastMPS / TimeState.instance.BaseMPS);
+            if (TimeState.instance.minutesPerSecond == TimeState.instance.FastMPS)
+            {
+                agent.speed = baseSpeed * (TimeState.instance.FastMPS / TimeState.instance.BaseMPS);
+                agent.angularSpeed = angSpeed * (TimeState.instance.FastMPS / TimeState.instance.BaseMPS);
+            }
+            else
+            {
+                agent.speed = baseSpeed;
+                agent.angularSpeed = angSpeed;
+            }
         }
         else
         {
-            agent.speed = baseSpeed;
-            agent.angularSpeed = angSpeed;
+            agent.speed = 0;
         }
     }
     // Update is called once per frame
