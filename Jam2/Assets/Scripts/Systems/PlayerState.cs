@@ -74,6 +74,24 @@ public class PlayerState : MonoBehaviour
             InvokeRepeating("updateSec", 1f, 1f);
         }
     }
+
+    public void PowerOn()
+    {
+        if (HousePower == false)
+        {
+            foreach (GameObject light in Pdlights)
+            {
+                light.SetActive(false);
+            }
+            foreach (GameObject light in PdELights)
+            {
+                light.SetActive(true);
+            }
+            PdPower = false;
+            PdDelay = TimeState.instance.getHour() + 1;
+            InvokeRepeating("updateSec", 1f, 1f);
+        }
+    }
     private void updateSec()
     {
         if (TimeState.instance.getHour() >= PdDelay)
