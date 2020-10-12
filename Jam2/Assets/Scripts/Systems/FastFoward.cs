@@ -14,12 +14,12 @@ public class FastFoward : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && !PlayerState.instance.paused && !PlayerState.instance.busy)
         {
             TimeState.instance.minutesPerSecond = TimeState.instance.FastMPS;
             img.enabled = true;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
             TimeState.instance.minutesPerSecond = TimeState.instance.BaseMPS;
             img.enabled = false;

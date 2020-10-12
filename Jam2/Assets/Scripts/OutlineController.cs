@@ -8,6 +8,7 @@ public class OutlineController : MonoBehaviour
     public float outlineThickness;
     public Color outlineColor;
     private Renderer render;
+    public GameObject outlineClone;
 
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class OutlineController : MonoBehaviour
         GameObject outlineObj = Instantiate(this.gameObject,transform.position, transform.rotation);
         outlineObj.transform.parent = gameObject.transform;
         outlineObj.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        outlineObj.transform.localScale = new Vector3(1, 1, 1);
         Renderer rend = outlineObj.GetComponent<Renderer>();
         rend.material = mat;
         rend.material.SetColor("_color", color);

@@ -12,12 +12,12 @@ public class TestAI : MonoBehaviour
     }
     private void updateSec()
     {
-        if (TimeState.instance.getHour() >= 10)
+        if (TimeState.instance.getHour() >= 8)
         {
             moveAi.SetDestination(0);
         }
 
-        if (TimeState.instance.getHour() >= 13)
+        if (TimeState.instance.getHour() >= 10)
         {
             moveAi.SetDestination(1);
         }
