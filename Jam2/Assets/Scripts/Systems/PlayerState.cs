@@ -9,6 +9,7 @@ public class PlayerState : MonoBehaviour
     public bool paused = false;
     public bool PdPower = true;
     public bool HousePower=true;
+    public bool Clogged=false;
     public bool[] items;    //11 items
     public Inventory inventory;
 

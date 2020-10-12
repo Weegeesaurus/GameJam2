@@ -111,7 +111,7 @@ public class TimeState : MonoBehaviour
             BlackoutManager.instance.FadeOut();
             if (getMinute() >= 2)
             {
-                SceneManager.LoadScene("testing");
+                SceneManager.LoadScene("MainLevel");
             }
         }
 
