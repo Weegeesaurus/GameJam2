@@ -10,6 +10,8 @@ public class PlayerState : MonoBehaviour
     public bool PdPower = true;
     public bool HousePower=true;
     public bool Clogged=false;
+    public bool GarageLock=false;
+    public bool raid=false;
     public bool[] items;    //11 items
     public Inventory inventory;
 
@@ -22,6 +24,7 @@ public class PlayerState : MonoBehaviour
     private GameObject[] Pdlights;
     private GameObject[] PdELights;
     private GameObject[] HouseLights;
+    private GameObject[] HELights;
 
     private void Awake()    //setting up singleton
     {
@@ -41,7 +44,12 @@ public class PlayerState : MonoBehaviour
         Pdlights = GameObject.FindGameObjectsWithTag("PDLight");
         PdELights = GameObject.FindGameObjectsWithTag("RedLight");
         HouseLights = GameObject.FindGameObjectsWithTag("HouseLight");
+        HELights = GameObject.FindGameObjectsWithTag("BlueLight");
         foreach (GameObject light in PdELights)
+        {
+            light.SetActive(false);
+        }
+        foreach (GameObject light in HELights)
         {
             light.SetActive(false);
         }
@@ -94,6 +102,10 @@ public class PlayerState : MonoBehaviour
             {
                 light.SetActive(false);
             }
+            foreach (GameObject light in HELights)
+            {
+                light.SetActive(true);
+            }
             GameObject obj =Instantiate(PowerOutSound);
             Destroy(obj, 10f);
             HousePower = false;
@@ -106,6 +118,10 @@ public class PlayerState : MonoBehaviour
             foreach (GameObject light in HouseLights)
             {
                 light.SetActive(true);
+            }
+            foreach (GameObject light in HELights)
+            {
+                light.SetActive(false);
             }
             GameObject obj = Instantiate(PowerOnSound);
             Destroy(obj, 10f);

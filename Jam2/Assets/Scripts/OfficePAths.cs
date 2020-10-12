@@ -18,6 +18,14 @@ public class OfficePAths : MonoBehaviour
             moveAi.SetDestination(count);
             count++;
         }
+        if (TimeState.instance.getHour()>=19 && TimeState.instance.getHour()<20 && PlayerState.instance.raid)
+        {
+            moveAi.SetDestination(6);
+        }
+        if (TimeState.instance.getHour() >= 21 && TimeState.instance.getHour() < 22)
+        {
+            moveAi.SetDestination(6);
+        }
     }
     public void Skip()
     {
