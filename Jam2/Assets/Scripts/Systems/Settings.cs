@@ -36,27 +36,10 @@ public class Settings : MonoBehaviour
         {
             if (pauseMenu.activeInHierarchy == false)   //if not paused
             {
-                if (Cursor.lockState == CursorLockMode.None)    //remembers cursorLocking
-                {
-                    cursorLock = false;
-                }
-                else
-                {
-                    cursorLock = true;
-                }
-                Cursor.lockState = CursorLockMode.None;
                 Pause();
             }
             else
             {
-                if (cursorLock == true)    //recalls cursorLock
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                }
                 Resume();
             }
 
@@ -79,6 +62,15 @@ public class Settings : MonoBehaviour
     {
        if (pauseMenu.activeInHierarchy==true)
         {
+            if (cursorLock == true)    //recalls cursorLock
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+
             pauseMenu.SetActive(false);
             TimeState.instance.StartTime();
             PlayerState.instance.paused = false;
@@ -88,6 +80,16 @@ public class Settings : MonoBehaviour
     {
         if (pauseMenu.activeInHierarchy == false)
         {
+            if (Cursor.lockState == CursorLockMode.None)    //remembers cursorLocking
+            {
+                cursorLock = false;
+            }
+            else
+            {
+                cursorLock = true;
+            }
+            Cursor.lockState = CursorLockMode.None;
+
             pauseMenu.SetActive(true);
             TimeState.instance.StopTime();
             PlayerState.instance.paused = true;
