@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueChain : MonoBehaviour
 {
     public GameObject[] dialogue;
     private int pos=0;
     private GameObject canvas;
+
+    public UnityEvent OnDialogueComplete;
 
     void Start()
     {
@@ -33,10 +36,15 @@ public class DialogueChain : MonoBehaviour
         else
         {
             PlayerState.instance.busy = false;
+            CompletedDialogue();
         }
     }
     public void Done()
     {
         PushDialogue();
+    }
+    private void CompletedDialogue()
+    {
+        OnDialogueComplete.Invoke();
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - PDLight
   - RedLight
   - HouseLight
+  - BlueLight
   layers:
   - Default
   - TransparentFX
