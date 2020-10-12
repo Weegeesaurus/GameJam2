@@ -14,13 +14,13 @@ public class room4AI : MonoBehaviour
     }
     private void updateSec()
     {
-        if (TimeState.instance.getHour() >= 11 && TimeState.instance.getHour() < 13)
+        if (TimeState.instance.getHour() >= 11 && TimeState.instance.getHour() < 12)
         {
             moveAi.SetDestination(1);
         }
 
 
-        if (TimeState.instance.getHour() >= 13)
+        if (TimeState.instance.getHour() >= 12 && TimeState.instance.getMinute() >= 30)
         {
             moveAi.SetDestination(0);
         }
