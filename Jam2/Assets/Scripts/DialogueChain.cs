@@ -28,7 +28,7 @@ public class DialogueChain : MonoBehaviour
             GameObject dia = Instantiate(dialogue[pos],canvas.transform);
             dia.SetActive(true);
             dia.GetComponent<TextScroll>().SetOwner(gameObject);
-            dia.transform.parent = canvas.transform;
+            dia.transform.SetParent(canvas.transform);
         }
         else
         {
