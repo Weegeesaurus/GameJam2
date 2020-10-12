@@ -36,6 +36,6 @@ public class doorM : MonoBehaviour {
 	{
 		Opened = false;
 		IsLocked = LockStart;
-		transform.eulerAngles = (0,YStart,0);
+		transform.eulerAngles = new Vector3(0, YStart, 0);
 	}
 }
