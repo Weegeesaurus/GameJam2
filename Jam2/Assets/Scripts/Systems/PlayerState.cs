@@ -12,6 +12,7 @@ public class PlayerState : MonoBehaviour
     public bool Clogged=false;
     public bool GarageLock=false;
     public bool raid=false;
+    public bool canRecord=false;
     public bool[] items;    //11 items
     public Inventory inventory;
 

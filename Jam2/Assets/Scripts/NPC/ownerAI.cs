@@ -14,7 +14,6 @@ public class ownerAI : MonoBehaviour
     {
         if (PlayerState.instance.Clogged==true)
         {
-            moveAi.SetDestination(0);
             tp.StartDialogue();
             Destroy(gameObject);
         }
