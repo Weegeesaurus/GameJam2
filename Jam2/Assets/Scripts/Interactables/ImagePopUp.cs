@@ -14,17 +14,19 @@ public class ImagePopUp : MonoBehaviour
         if (on)
         {
             clue.enabled = true;
+            PlayerState.instance.busy = true;
+
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             on = false;
             clue.enabled = false;
+            PlayerState.instance.busy = false;
         }
     }
     public void popUp()
     {
         on = true;
-        
     }
-
+    
 }
