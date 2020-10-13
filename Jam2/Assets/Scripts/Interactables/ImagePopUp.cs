@@ -6,27 +6,26 @@ using UnityEngine.UI;
 
 public class ImagePopUp : MonoBehaviour
 {
-    [SerializeField] private Image clue;
+    [SerializeField] private GameObject clue;
     private bool on = false;
 
-    void FixedUpdate()
+    void Update()
     {
         if (on)
         {
-            clue.enabled = true;
-            PlayerState.instance.busy = true;
-
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            on = false;
-            clue.enabled = false;
-            PlayerState.instance.busy = false;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                on = false;
+                clue.SetActive(false);
+                PlayerState.instance.busy = false;
+            }
         }
     }
     public void popUp()
     {
         on = true;
+        clue.SetActive(true);
+        PlayerState.instance.busy = true;
     }
     
 }

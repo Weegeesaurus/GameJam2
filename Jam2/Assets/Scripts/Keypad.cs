@@ -48,6 +48,8 @@ public class Keypad : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             PlayerState.instance.busy = false;
             Cursor.lockState = CursorLockMode.Locked;
+            GameObject obj = Instantiate(PlayerState.instance.SuccessSound);
+            Destroy(obj, 5f);
             Destroy(gameObject);
         }
         else
@@ -60,6 +62,8 @@ public class Keypad : MonoBehaviour
             yield return new WaitForSeconds(1.1f);
             PlayerState.instance.busy = false;
             Cursor.lockState = CursorLockMode.Locked;
+            GameObject obj = Instantiate(PlayerState.instance.ErrorSound);
+            Destroy(obj, 5f);
             Destroy(gameObject);
         }
     }

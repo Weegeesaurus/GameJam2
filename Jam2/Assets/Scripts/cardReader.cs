@@ -19,15 +19,26 @@ public class cardReader : MonoBehaviour
     }
     public void UnlockDoor()
     {
-        if (locked && PlayerState.instance.items[itemID]==true)
+        if (locked)
         {
-            foreach (doorM door in doors)
+            if (PlayerState.instance.items[itemID] == true)
             {
-                door.IsLocked = false;
+                foreach (doorM door in doors)
+                {
+                    door.IsLocked = false;
+                }
+                locked = false;
+                redSphere.SetActive(false);
+                greenSphere.SetActive(true);
+
+                GameObject obj = Instantiate(PlayerState.instance.SuccessSound);
+                Destroy(obj, 5f);
             }
-            locked = false;
-            redSphere.SetActive(false);
-            greenSphere.SetActive(true);
+            else
+            {
+                GameObject obj = Instantiate(PlayerState.instance.ErrorSound);
+                Destroy(obj, 5f);
+            }
         }
     }
 }

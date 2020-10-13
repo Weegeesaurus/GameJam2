@@ -21,6 +21,10 @@ public class PlayerState : MonoBehaviour
     public GameObject CrashSound;
     public GameObject GunSound;
     public GameObject LockedSound;
+    public GameObject KnockSound;
+    public GameObject SirenSound;
+    public GameObject ErrorSound;
+    public GameObject SuccessSound;
     private int PdDelayH;
     private int PdDelayM;
     private GameObject[] Pdlights;
@@ -80,8 +84,8 @@ public class PlayerState : MonoBehaviour
 
     public void Raid()
     {
-        GameObject obj = Instantiate(PowerOnSound);
-        Destroy(obj, 10f);
+        GameObject obj = Instantiate(SirenSound);
+        Destroy(obj, 15f);
         foreach (GameObject door in raidDoors)
         {
             doorM component = door.GetComponent<doorM>();

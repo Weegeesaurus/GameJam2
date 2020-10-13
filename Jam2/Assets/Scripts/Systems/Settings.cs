@@ -64,7 +64,7 @@ public class Settings : MonoBehaviour
     public void UpdateSensitivity()
     {
         sensitivity.value = Mathf.Round(sensitivity.value * 100f) / 100f;
-        camControl.sensitivity = 300f + sensitivity.value * 400f;
+        camControl.sensitivity = 200f + sensitivity.value * 400f;
         sensText.text = Mathf.Round(sensitivity.value * 100f).ToString();
     }
     public void UpdateFov()

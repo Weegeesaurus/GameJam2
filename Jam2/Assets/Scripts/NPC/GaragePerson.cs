@@ -30,6 +30,8 @@ public class GaragePerson : MonoBehaviour
         {
             moveAi.SetDestination(2);   //back
             current = 3;
+            GameObject obj = Instantiate(PlayerState.instance.KnockSound);
+            Destroy(obj, 5f);
         }
 
         if (TimeState.instance.getHour() >= 19 && current == 3)
