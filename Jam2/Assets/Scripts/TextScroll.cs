@@ -11,7 +11,7 @@ public class TextScroll : MonoBehaviour
     private int pos=0;
     public float scrollSpeed;
     private float timer=0f;
-    private GameObject owner = null;
+    public GameObject owner = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,15 @@ public class TextScroll : MonoBehaviour
             {
                 if (owner!=null)
                 {
-                    owner.GetComponent<DialogueChain>().Done();
+                    IntroDialogue test = owner.GetComponent<IntroDialogue>();
+                    if (test==null)
+                    {
+                        owner.GetComponent<DialogueChain>().Done();
+                    }
+                    else
+                    {
+                        owner.GetComponent<IntroDialogue>().Done();
+                    }
                 }
                 Destroy(gameObject);
             }

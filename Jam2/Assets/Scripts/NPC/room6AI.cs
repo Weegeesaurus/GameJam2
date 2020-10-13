@@ -8,6 +8,7 @@ public class room6AI : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
     public GameObject powerKey;
     public GameObject tp;
+    public GameObject talk;
 
     private int current=0;
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class room6AI : MonoBehaviour
         {
             if (current == 0)
             {
+                Destroy(talk);
                 moveAi.SetDestination(0);
                 current = 1;
             }

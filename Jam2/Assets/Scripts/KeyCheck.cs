@@ -14,5 +14,10 @@ public class KeyCheck : MonoBehaviour
                 door.IsLocked = false;
                 door.Open();
             }
+            else
+            {
+                GameObject obj = Instantiate(PlayerState.instance.LockedSound);
+                Destroy(obj, 4f);
+            }
     }
 }

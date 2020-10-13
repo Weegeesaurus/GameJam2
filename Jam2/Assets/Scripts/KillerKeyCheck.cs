@@ -11,8 +11,7 @@ public class KillerKeyCheck : MonoBehaviour
         if(door.IsLocked)
             if(PlayerState.instance.items[5] == true)
             {
-                BlackoutManager bom = transform.GetComponent<BlackoutManager>();
-                bom.FadeOut();
+                BlackoutManager.instance.FadeOut();
                 door.IsLocked = false;
                 door.Open();
                 Invoke("End",2f);

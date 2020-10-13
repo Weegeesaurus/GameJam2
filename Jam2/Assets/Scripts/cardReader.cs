@@ -5,21 +5,27 @@ using UnityEngine;
 public class cardReader : MonoBehaviour
 {
     // Start is called before the first frame update
-    public doorM door;
+    public doorM[] doors;
     public int itemID;
+    private bool locked;
     public GameObject redSphere;
     public GameObject greenSphere;
 
     private void Start()
-    { 
+    {
         redSphere.SetActive(true);
         greenSphere.SetActive(false);
+        locked = true;
     }
     public void UnlockDoor()
     {
-        if (door.IsLocked) {
-            door.IsLocked = false;
-            door.Open();
+        if (locked && PlayerState.instance.items[itemID]==true)
+        {
+            foreach (doorM door in doors)
+            {
+                door.IsLocked = false;
+            }
+            locked = false;
             redSphere.SetActive(false);
             greenSphere.SetActive(true);
         }

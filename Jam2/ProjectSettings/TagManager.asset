@@ -9,6 +9,7 @@ TagManager:
   - RedLight
   - HouseLight
   - BlueLight
+  - RaidDoor
   layers:
   - Default
   - TransparentFX

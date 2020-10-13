@@ -25,7 +25,14 @@ public class doorM : MonoBehaviour {
 	public void Open()
 	{
 		if (!IsLocked)
+		{
 			Opened = true;
+		}
+		else
+        {
+			GameObject obj = Instantiate(PlayerState.instance.LockedSound);
+			Destroy(obj, 4f);
+        }
 	}
 	public void Reset()
 	{

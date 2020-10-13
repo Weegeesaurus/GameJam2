@@ -23,24 +23,39 @@ public class Settings : MonoBehaviour
     // called second
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        cursorLock = true;
-        cam = Camera.main;
-        camControl = cam.GetComponent<CameraController>();
-        UpdateSensitivity();
-        UpdateFov();
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+
+        if (sceneName == "MainLevel")
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            cursorLock = true;
+            cam = Camera.main;
+            camControl = cam.GetComponent<CameraController>();
+            UpdateSensitivity();
+            UpdateFov();
+        }
     }
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
         {
-            if (pauseMenu.activeInHierarchy == false)   //if not paused
+            Scene currentScene = SceneManager.GetActiveScene();
+            string sceneName = currentScene.name;
+
+            if (sceneName == "MainLevel")
             {
-                Pause();
-            }
-            else
-            {
-                Resume();
+                if (pauseMenu.activeInHierarchy == false)   //if not paused
+                {
+                    Pause();
+                }
+                else
+                {
+                    Resume();
+                }
             }
 
         }

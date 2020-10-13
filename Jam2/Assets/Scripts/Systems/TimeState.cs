@@ -23,6 +23,7 @@ public class TimeState : MonoBehaviour
     private bool OutageTrigger=false;
     private bool CrashTrigger=false;
     private bool GunTrigger=false;
+    private bool RaidTrigger=false;
 
     private void Awake()    //setting up singleton
     {
@@ -97,6 +98,17 @@ public class TimeState : MonoBehaviour
         {
             PlayerState.instance.Crash();
             CrashTrigger = true;
+        }
+
+        if (TimeState.instance.getHour() >= 20 && TimeState.instance.getHour() < 21 && PlayerState.instance.raid && !RaidTrigger)
+        {
+            RaidTrigger = true;
+            PlayerState.instance.Raid();
+        }
+        if (TimeState.instance.getHour() >= 21 && TimeState.instance.getMinute() >=10 && !PlayerState.instance.raid && !RaidTrigger)
+        {
+            RaidTrigger = true;
+            PlayerState.instance.Raid();
         }
 
         if (getHour() == 21 && !GunTrigger)     //murder happens

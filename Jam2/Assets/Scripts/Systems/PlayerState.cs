@@ -20,12 +20,14 @@ public class PlayerState : MonoBehaviour
     public GameObject PowerOnSound;
     public GameObject CrashSound;
     public GameObject GunSound;
+    public GameObject LockedSound;
     private int PdDelayH;
     private int PdDelayM;
     private GameObject[] Pdlights;
     private GameObject[] PdELights;
     private GameObject[] HouseLights;
     private GameObject[] HELights;
+    private GameObject[] raidDoors;
 
     private void Awake()    //setting up singleton
     {
@@ -46,6 +48,7 @@ public class PlayerState : MonoBehaviour
         PdELights = GameObject.FindGameObjectsWithTag("RedLight");
         HouseLights = GameObject.FindGameObjectsWithTag("HouseLight");
         HELights = GameObject.FindGameObjectsWithTag("BlueLight");
+        raidDoors = GameObject.FindGameObjectsWithTag("RaidDoor");
         foreach (GameObject light in PdELights)
         {
             light.SetActive(false);
@@ -75,6 +78,17 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    public void Raid()
+    {
+        GameObject obj = Instantiate(PowerOnSound);
+        Destroy(obj, 10f);
+        foreach (GameObject door in raidDoors)
+        {
+            doorM component = door.GetComponent<doorM>();
+            component.IsLocked = false;
+            component.Open();
+        }
+    }
     public void PdPowerOff()
     {
         if (PdPower == true)
