@@ -17,13 +17,11 @@ public class cardReader : MonoBehaviour
     }
     public void UnlockDoor()
     {
-        if (door.IsLocked)
-            if (PlayerState.instance.items[itemID] == true)
-            {
-                door.IsLocked = false;
-                door.Open();
-                redSphere.SetActive(false);
-                greenSphere.SetActive(true);
-            }
+        if (door.IsLocked) {
+            door.IsLocked = false;
+            door.Open();
+            redSphere.SetActive(false);
+            greenSphere.SetActive(true);
+        }
     }
 }
