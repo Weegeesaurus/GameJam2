@@ -15,15 +15,20 @@ public class cardReader : MonoBehaviour
         redSphere.SetActive(true);
         greenSphere.SetActive(false);
     }
-    public void UnlockDoor()
+    public void Update()
     {
-        if (door.IsLocked)
+     if (door.IsLocked)
             if (PlayerState.instance.items[itemID] == true)
             {
-                door.IsLocked = false;
-                door.Open();
-                redSphere.SetActive(false);
-                greenSphere.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    door.IsLocked = false;
+                    door.Open();
+                    redSphere.SetActive(false);
+                    greenSphere.SetActive(true);
+                }
+                
             }
     }
 }
+
