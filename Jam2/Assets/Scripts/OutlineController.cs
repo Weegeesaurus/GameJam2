@@ -7,6 +7,7 @@ public class OutlineController : MonoBehaviour
     public Material outlineMaterial;
     public float outlineThickness;
     public Color outlineColor;
+    public bool FlipOutline;
     private Renderer render;
     public GameObject outlineClone;
 
@@ -30,7 +31,14 @@ public class OutlineController : MonoBehaviour
     {
         GameObject outlineObj = Instantiate(this.gameObject,transform.position, transform.rotation);
         outlineObj.transform.parent = gameObject.transform;
-        outlineObj.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        if (FlipOutline)
+        {
+            outlineObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            outlineObj.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
         outlineObj.transform.localScale = new Vector3(1, 1, 1);
         Renderer rend = outlineObj.GetComponent<Renderer>();
         rend.material = mat;
