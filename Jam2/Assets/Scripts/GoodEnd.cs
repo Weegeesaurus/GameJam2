@@ -17,4 +17,8 @@ public class GoodEnd : MonoBehaviour
             }
         }
     }
+    public void ClearGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
 }
